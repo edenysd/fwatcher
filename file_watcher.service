@@ -1,0 +1,10 @@
+[Unit]
+Description="Watch files changes"
+Wants=file_watcher.timer
+
+[Service]
+ExecStart=/usr/sbin/my_watcher
+Type=simple
+
+[Install]
+WantedBy=default.target

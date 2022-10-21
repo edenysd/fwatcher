@@ -1,0 +1,27 @@
+#!/bin/bash
+command=filewatcher
+exec=my_watcher
+timer=file_watcher.timer
+service=file_watcher.service
+local_conf_path=file.conf
+target_conf_dir_path=/etc/sec-info/
+test_directory_files=test
+target_directory_files=/shared/
+
+make
+make clean
+
+cp ${service} /etc/systemd/system/${service}
+cp ${timer} /etc/systemd/system/${timer}
+cp ${exec} /usr/sbin/${exec}
+cp ${command} /usr/sbin/${command}
+
+rm -r ${target_conf_dir_path}
+mkdir ${target_conf_dir_path}
+
+cp ${local_conf_path} ${target_conf_dir_path}
+cp -r ${test_directory_files} ${target_directory_files}
+
+systemctl daemon-reload
+
+exit 0 

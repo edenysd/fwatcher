@@ -1,0 +1,10 @@
+[Unit]
+Description="Activate watcher service"
+Requires=file_watcher.service
+
+[Timer]
+Unit=file_watcher.service
+OnCalendar= *-*-* *:*:00
+
+[Install]
+WantedBy=default.target

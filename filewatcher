@@ -1,0 +1,39 @@
+#!/bin/bash
+
+service=file_watcher.service
+timer=file_watcher.timer
+
+start() {
+    sudo systemctl start ${timer}
+}
+
+stop() {
+    sudo systemctl stop ${timer}
+}
+
+status() {
+    sudo systemctl ${timer}
+}
+
+log() {
+    sudo journalctl -f -u ${service}
+}
+
+case "$1" in 
+    start)
+       start
+       ;;
+    stop)
+       stop
+       ;;
+    status)
+       status
+       ;;
+    log)
+       log
+       ;;
+    *)
+       echo "Usages: filewatcher {start|stop|status|log}"
+esac
+
+exit 0 
